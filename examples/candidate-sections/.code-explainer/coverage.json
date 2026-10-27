@@ -1,0 +1,14 @@
+[
+  {
+    "path": "src/pipeline.py",
+    "language": "python",
+    "status": "annotated",
+    "reason": "Examined and annotated at requested detail.",
+    "output_path": "src/pipeline.py",
+    "checks": [
+      "insertion-only",
+      "token/AST/compile"
+    ],
+    "uncertainties": []
+  }
+]

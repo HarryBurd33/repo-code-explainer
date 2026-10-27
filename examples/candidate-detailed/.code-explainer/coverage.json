@@ -1,0 +1,87 @@
+[
+  {
+    "path": "src/pipeline.py",
+    "language": "python",
+    "status": "annotated",
+    "reason": "Examined and annotated at requested detail.",
+    "output_path": "src/pipeline.py",
+    "checks": [
+      "insertion-only",
+      "token/AST/compile"
+    ],
+    "uncertainties": []
+  },
+  {
+    "path": "src/bridge.py",
+    "language": "python",
+    "status": "annotated",
+    "reason": "Examined and annotated at requested detail.",
+    "output_path": "src/bridge.py",
+    "checks": [
+      "insertion-only",
+      "token/AST/compile"
+    ],
+    "uncertainties": []
+  },
+  {
+    "path": "web/transform.js",
+    "language": "javascript",
+    "status": "annotated",
+    "reason": "Examined and annotated at requested detail.",
+    "output_path": "web/transform.js",
+    "checks": [
+      "insertion-only",
+      "node --check",
+      "manual statement review"
+    ],
+    "uncertainties": []
+  },
+  {
+    "path": "matlab/scale_columns.m",
+    "language": "matlab",
+    "status": "annotated",
+    "reason": "Examined and annotated at requested detail.",
+    "output_path": "matlab/scale_columns.m",
+    "checks": [
+      "insertion-only",
+      "continuation guard",
+      "manual syntax review"
+    ],
+    "uncertainties": [
+      "No MATLAB/Octave installed; native validation unavailable."
+    ]
+  },
+  {
+    "path": "config/settings.json",
+    "language": "json",
+    "status": "skipped",
+    "reason": "Strict JSON has no native comments; byte-identical copy and companion explanation.",
+    "output_path": "config/settings.json",
+    "checks": [
+      "byte identity"
+    ],
+    "uncertainties": []
+  },
+  {
+    "path": "README.md",
+    "language": "markdown",
+    "status": "examined",
+    "reason": "Retained unannotated context.",
+    "output_path": "README.md",
+    "checks": [
+      "byte-identical supporting copy"
+    ],
+    "uncertainties": []
+  },
+  {
+    "path": "src/helpers.py",
+    "language": "python",
+    "status": "examined",
+    "reason": "Retained unannotated context.",
+    "output_path": "src/helpers.py",
+    "checks": [
+      "byte-identical supporting copy"
+    ],
+    "uncertainties": []
+  }
+]

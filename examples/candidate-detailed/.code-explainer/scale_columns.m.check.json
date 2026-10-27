@@ -1,0 +1,10 @@
+{
+  "added_comment_lines": 8,
+  "equivalence": "unverified_manual_review_required",
+  "language": "matlab",
+  "limitation": "Structural checks do not prove behavioral equivalence for source inspection, line-number-sensitive behavior, external tools, or runtime environments.",
+  "original_lines_preserved": true,
+  "status": "pass",
+  "syntax": "unverified_no_matlab_parser",
+  "warning": "Insertion-only and conservative continuation checks do not parse MATLAB strings, transpose, blocks, or directives. Run native validation where available."
+}

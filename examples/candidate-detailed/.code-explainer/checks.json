@@ -1,0 +1,43 @@
+[
+  {
+    "path": "src/pipeline.py",
+    "command": "verifier pair python",
+    "exit_code": 0,
+    "stdout": "{\"added_comment_lines\": 8, \"equivalence\": \"structural_only\", \"executable_tokens_equal\": true, \"language\": \"python\", \"limitation\": \"Structural checks do not prove behavioral equivalence for source inspection, line-number-sensitive behavior, external tools, or runtime environments.\", \"normalized_ast_equal\": true, \"original_lines_preserved\": true, \"status\": \"pass\", \"syntax\": \"compiled_without_execution\"}\n",
+    "stderr": ""
+  },
+  {
+    "path": "src/bridge.py",
+    "command": "verifier pair python",
+    "exit_code": 0,
+    "stdout": "{\"added_comment_lines\": 9, \"equivalence\": \"structural_only\", \"executable_tokens_equal\": true, \"language\": \"python\", \"limitation\": \"Structural checks do not prove behavioral equivalence for source inspection, line-number-sensitive behavior, external tools, or runtime environments.\", \"normalized_ast_equal\": true, \"original_lines_preserved\": true, \"status\": \"pass\", \"syntax\": \"compiled_without_execution\"}\n",
+    "stderr": ""
+  },
+  {
+    "path": "web/transform.js",
+    "command": "node --check output plus conservative insertion-only comparison",
+    "exit_code": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  {
+    "path": "matlab/scale_columns.m",
+    "command": "verifier pair matlab",
+    "exit_code": 0,
+    "stdout": "{\"added_comment_lines\": 8, \"equivalence\": \"unverified_manual_review_required\", \"language\": \"matlab\", \"limitation\": \"Structural checks do not prove behavioral equivalence for source inspection, line-number-sensitive behavior, external tools, or runtime environments.\", \"original_lines_preserved\": true, \"status\": \"pass\", \"syntax\": \"unverified_no_matlab_parser\", \"warning\": \"Insertion-only and conservative continuation checks do not parse MATLAB strings, transpose, blocks, or directives. Run native validation where available.\"}\n",
+    "stderr": ""
+  },
+  {
+    "path": "config/settings.json",
+    "command": "verifier pair none",
+    "exit_code": 0,
+    "stdout": "{\"added_comment_lines\": 0, \"byte_identical\": true, \"equivalence\": \"Byte identity only; format syntax not checked.\", \"language\": \"none\", \"status\": \"pass\", \"syntax\": \"not_checked\"}\n",
+    "stderr": ""
+  },
+  {
+    "command": "verifier check-source",
+    "exit_code": 0,
+    "stdout": "{\"added\": [], \"changed_or_missing\": [], \"recorded_files\": 10, \"scope\": \"Recorded regular files only; omitted directories are not verified.\", \"status\": \"pass\"}\n",
+    "stderr": ""
+  }
+]

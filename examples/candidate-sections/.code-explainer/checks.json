@@ -1,0 +1,15 @@
+[
+  {
+    "path": "src/pipeline.py",
+    "command": "verifier pair python",
+    "exit_code": 0,
+    "stdout": "{\"added_comment_lines\": 4, \"equivalence\": \"structural_only\", \"executable_tokens_equal\": true, \"language\": \"python\", \"limitation\": \"Structural checks do not prove behavioral equivalence for source inspection, line-number-sensitive behavior, external tools, or runtime environments.\", \"normalized_ast_equal\": true, \"original_lines_preserved\": true, \"status\": \"pass\", \"syntax\": \"compiled_without_execution\"}\n",
+    "stderr": ""
+  },
+  {
+    "command": "verifier check-source",
+    "exit_code": 0,
+    "stdout": "{\"added\": [], \"changed_or_missing\": [], \"recorded_files\": 10, \"scope\": \"Recorded regular files only; omitted directories are not verified.\", \"status\": \"pass\"}\n",
+    "stderr": ""
+  }
+]

@@ -1,0 +1,22 @@
+--- original/src/pipeline.py
++++ annotated/src/pipeline.py
+@@ -1,15 +1,19 @@
+ #!/usr/bin/env python3
+ # -*- coding: utf-8 -*-
++# Load the row-selection and value-reversal helpers from this package.
+ from .helpers import keep, q
+ 
+ # This message is data, including the literal # character.
+ MESSAGE = "count # unchanged"
+ 
+ 
++# Sum amounts from rows whose enabled field is truthy (missing means False).
++# Convert accepted amounts to floats; missing or invalid amounts raise errors.
+ def totals(rows):
+     values = [float(row["amount"]) for row in rows if keep(row)]
+     return sum(values)
+ 
+ 
++# Reverse every required label using helpers.q, retaining the input row order.
+ def labels(rows):
+     return [q(row["label"]) for row in rows]

@@ -1,0 +1,85 @@
+--- original/src/pipeline.py
++++ annotated/src/pipeline.py
+@@ -1,15 +1,23 @@
+ #!/usr/bin/env python3
+ # -*- coding: utf-8 -*-
++# Import keep (enabled truthiness) and q (sequence reversal) from helpers.
+ from .helpers import keep, q
+ 
+ # This message is data, including the literal # character.
+ MESSAGE = "count # unchanged"
+ 
+ 
++# Sum numeric amounts of accepted rows; helpers.keep decides which rows count.
+ def totals(rows):
++    # Visit rows in order, accepting truthy enabled fields; absent means False.
++    # Convert required amounts to floats; missing keys or invalid numbers raise.
+     values = [float(row["amount"]) for row in rows if keep(row)]
++    # Add the converted amounts; no accepted rows yields integer 0.
+     return sum(values)
+ 
+ 
++# Produce reversed labels in the same order as the supplied rows.
+ def labels(rows):
++    # Read each required label and reverse it with value[::-1] in helpers.q.
++    # Missing labels or values that cannot be sliced raise errors.
+     return [q(row["label"]) for row in rows]
+--- original/src/bridge.py
++++ annotated/src/bridge.py
+@@ -1,10 +1,19 @@
++# Encode subprocess input and decode its output using JSON.
+ import json
++# Resolve the JavaScript path relative to this source file.
+ from pathlib import Path
++# Start Node and collect its output through subprocess pipes.
+ import subprocess
+ 
+ 
++# Send values to the Node transform and return its decoded JSON result.
+ def run(values):
++    # Find web/transform.js beneath the project root, independent of working directory.
+     script = Path(__file__).resolve().parents[1] / "web" / "transform.js"
++    # Start node via PATH and send serialized values to standard input as text.
++    # Capture stdout and stderr; nonzero exit raises CalledProcessError.
++    # The script expects an array, keeps values >= 0, and doubles them in order.
+     result = subprocess.run(["node", str(script)], input=json.dumps(values),
+                             text=True, capture_output=True, check=True)
++    # Decode the script's stdout; malformed JSON raises a decoding error.
+     return json.loads(result.stdout)
+--- original/web/transform.js
++++ annotated/web/transform.js
+@@ -1,3 +1,7 @@
++// Read UTF-8 JSON from stdin (descriptor 0) and parse it; invalid JSON throws.
+ const input = JSON.parse(require("fs").readFileSync(0, "utf8"));
++// For array input, retain values comparing >= 0 and double them in order.
++// These operators can coerce nonnumeric values; there is no type validation.
+ const result = input.filter(value => value >= 0).map(value => value * 2);
++// Serialize the transformed array to stdout for bridge.run to decode.
+ process.stdout.write(JSON.stringify(result));
+--- original/matlab/scale_columns.m
++++ annotated/matlab/scale_columns.m
+@@ -1,10 +1,18 @@
++% Return A with each column scaled by its matching fixed weight.
+ function A = scale_columns(A)
++% Build four column weights in one continued row-vector statement.
+ weights = [1, 2, ...
+            3, 4];
++% Compute row means across columns; this local result is not used below.
+ means = mean(A, 2);
++% Select the first row and all columns; this local result is unused below.
+ first = A(1, :);
++% Conjugate-transpose A; the resulting local B is not used below.
+ B = A';
++% Visit each column using MATLAB one-based indices.
+ for k = 1:size(A, 2)
++    % Scale all rows in column k by weight k; more than four columns
++    % accesses beyond the four weights and raises an indexing error.
+     A(:, k) = A(:, k) * weights(k);
+ end
+ end
+--- /dev/null
++++ companion/settings-explanation.md
+@@ -0,0 +1,3 @@
++# Settings companion
++
++`config/settings.json` is strict JSON and is copied byte-for-byte. `workers` is the numeric value zero, and `paths` is an empty array. No inspected code reads these keys, so whether zero has a special meaning is unresolved. This is a companion explanation, not inline annotation.

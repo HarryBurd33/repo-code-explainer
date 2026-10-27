@@ -1,0 +1,11 @@
+{
+  "added_comment_lines": 4,
+  "equivalence": "structural_only",
+  "executable_tokens_equal": true,
+  "language": "python",
+  "limitation": "Structural checks do not prove behavioral equivalence for source inspection, line-number-sensitive behavior, external tools, or runtime environments.",
+  "normalized_ast_equal": true,
+  "original_lines_preserved": true,
+  "status": "pass",
+  "syntax": "compiled_without_execution"
+}

@@ -2,6 +2,15 @@
 
 Local release preparation on October 26, 2026 used Python 3.15.0 and an existing Node runtime. **31 verifier tests and 8 public example/package tests passed.** No third-party Python package was installed. Run the two commands in README.md to reproduce them.
 
+## Publication verification
+
+- [The first hosted CI run](https://github.com/HarryBurd33/repo-code-explainer/actions/runs/40453095094) passed both suites on Python **3.9, 3.12 and 3.15**. All three jobs completed successfully, including the Node-backed example checks.
+- The published skill was downloaded by Codex's skill installer into the user-wide skill directory. All eight installed files matched the published package hashes, and the installed verifier's 31 tests passed.
+- Codex CLI **0.164.0** returned the skill from its native `skills/list` API, with `forceReload: true`, while called from an unrelated temporary directory. It reported `scope: user`, `enabled: true`, and no related loading errors. This discovery check started no model turn and establishes local user-wide discovery, not automatic synchronization to other machines/cloud environments.
+- GitHub reported public visibility, SPDX license **MIT**, the intended default branch, and ten relevant repository topics. The published commit was read back and matched the local tested source.
+
+## Capability evidence
+
 | Capability or claim | Actual evidence | Limit |
 | --- | --- | --- |
 | Original source remains untouched | Hash/inventory comparison of ten initial synthetic input files; public runtime tests execute copies and recheck source bytes | A snapshot covers its declared files/exclusions, not arbitrary omitted files |
